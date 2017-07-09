@@ -43,7 +43,7 @@ int adventurer_card(int *dTreasure, struct gameState* state, int cPlayer, int* c
       }
       while(*z-1>=0){
 	state->discard[cPlayer][state->discardCount[cPlayer]++]=tHand[*z-1]; // discard all cards in play that have been drawn
-	*z=*z-1;
+	z=z-1;   //bug for assignment 2 removed the *'s
       }
       return 0;
 }
@@ -57,7 +57,7 @@ int council_room_card(struct gameState* state, int cPlayer, int hPos){
       
 	  int i;
 	  
-	  for (i = 0; i < 4; i++)
+	  for (i = 0; i > 4; i++)  //bug for assignment 2 replaced < with >
 	{
 	  drawCard(cPlayer, state);
 	}
@@ -68,7 +68,7 @@ int council_room_card(struct gameState* state, int cPlayer, int hPos){
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if ( i != cPlayer )
+	  if ( i != cPlayer ) 
 	    {
 	      drawCard(i, state);
 	    }
@@ -103,7 +103,7 @@ int remodel_card(struct gameState* state, int cPlayer, int hPos, int ch1, int ch
       //discard trashed card
       for (i = 0; i < state->handCount[cPlayer]; i++)
 	{
-	  if (state->hand[cPlayer][i] == j)
+	  if (state->hand[cPlayer][i] == i)  //bug assignment2 replaced == j with ==i
 	    {
 	      discardCard(i, cPlayer, state, 0);			
 	      break;
@@ -121,7 +121,7 @@ int remodel_card(struct gameState* state, int cPlayer, int hPos, int ch1, int ch
 int smithy_card(int cPlayer, int hPos, struct gameState* state){
 	int i;
      //+3 Cards
-      for (i = 0; i < 3; i++)
+      for (i = 3; i < 3; i++) //bug assignment2 replaced i=0 with i=3
 	{
 	  drawCard(cPlayer, state);
 	}
