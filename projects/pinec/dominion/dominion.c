@@ -16,7 +16,7 @@ int compare(const void* a, const void* b) {
 //game cards as functions
 
 /*adventurer_card() 
- *Used in the cardEffect function. Checks if discard is empty, if it is, its shuffle
+ *Used in the cardEffect function. Checks if deck is empty, if it is, its shuffle
  *d and added to the players deck.  
  *Draws from the players deck until 2 treasures are drawn and adds them to his hand.
  *Discards remaining drawn cards.
