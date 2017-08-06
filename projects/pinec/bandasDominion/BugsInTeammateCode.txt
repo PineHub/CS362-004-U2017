@@ -1,0 +1,6 @@
+For adventurer, line 656, while drawntreasure < 1 instead of drawntreasure <2.  drawntreasure should be counted for <2 because adventurer should be drawing 2 treasures instead of 1.
+This was caught via my random tester to see if postHandcount is 2 additional cards greater than postHandcount.  
+Quite a few segmentation faults were caused by trying to increment a pointer like *z via *z++ instead of z= z+1.  I corrected that for all pointers. 
+The bug for smithy was found for the loop on line 702 of dominion.c.  My teammate made the loop draw 4 cards instead of three.  
+This was caught in the random tester which had a failed assertion for showing that the handcount was supposed to be 401, but was 402, and the deck was supposed to be 294, but was 293 instead. 
+For councilRoom(), my unit test caught the bug of an additional drawCard() call on line 689 when it failed two tests of the hand count for player 2 and the discard+deck count of player 2.
