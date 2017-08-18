@@ -17,7 +17,7 @@
 
 
 import junit.framework.TestCase;
-
+import java.util.Random;
 
 
 
@@ -41,8 +41,8 @@ public class UrlValidatorTest extends TestCase {
    public void testManualTest()
    {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
+	   System.out.println(urlVal.isValid("mailto:bingo@abc.com"));
+	    
 	   
    }
    
@@ -59,10 +59,44 @@ public class UrlValidatorTest extends TestCase {
    
    public void testIsValid()
    {
+	   
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   Random rand = new Random(); 
+	   int randomA, randomB, randomC, randomD, randomE, randomF, randomG, randomH;
+	   String[] validStart = {"http://", "ftp://", "https://", "mailto://", "file://", "irc://", "data://"};
+	   String[] validSecond = {"www.", ""};
+	   String[] validDomainPart = {"photos.", ""};
+	   String[] validDomain = {"google."};
+	   String[] validTld = {"com", "org", "net", "edu", "info"};
+	   String[] validRoutes = {"/route", ""};
+	   String[] validPort = {":8000", ""};
+	   String[] validQuery = {"?a=b", ""};
 	   for(int i = 0;i<10000;i++)
 	   {
-		   
+	   randomA = rand.nextInt(7);
+	   randomB = rand.nextInt(2);
+	   randomC = rand.nextInt(2);
+	   randomD = 0;
+	   randomE  = rand.nextInt(5);
+	   randomF = rand.nextInt(2);
+	   randomG = rand.nextInt(2);
+	   randomH = rand.nextInt(2);
+	    
+	   String testStr = "" + 
+	   validStart[randomA] +
+	   "" +
+	   validSecond[randomB] +
+	   validDomainPart[randomC] +
+	   validDomain[randomD] +
+	   validTld[randomE] +
+	   validRoutes[randomF] +
+	   validPort[randomG] +
+	   validQuery[randomH];
+	    
+	   System.out.println(testStr);
+	   System.out.println(urlVal.isValid(testStr));
 	   }
+	   
    }
    
    public void testAnyOtherUnitTest()
